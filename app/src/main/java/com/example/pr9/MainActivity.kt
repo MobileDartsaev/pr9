@@ -31,13 +31,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun AppContent() {
-    // Устанавливаем переменную для отслеживания текущего экрана
     var isMainScreen by remember { mutableStateOf(true) }
 
     if (isMainScreen) {
-        MainScreen(onRegisterClick = { isMainScreen = false }) // Переход на экран регистрации
+        MainScreen(onRegisterClick = { isMainScreen = false })
     } else {
-        ConfirmationScreen(onBackClick = { isMainScreen = true }) // Возврат на основной экран
+        ConfirmationScreen(onBackClick = { isMainScreen = true })
     }
 }
 
@@ -52,16 +51,14 @@ fun MainScreen(onRegisterClick: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            // Картинка
             Image(
-                painter = painterResource(id = R.drawable.p1), // Замените на имя вашего изображения
+                painter = painterResource(id = R.drawable.p1),
                 contentDescription = "Example Image",
-                modifier = Modifier.size(80.dp) // Размер квадратного изображения
+                modifier = Modifier.size(80.dp)
             )
 
             Spacer(modifier = Modifier.width(16.dp))
 
-            // Тексты для регистрации, помощи и входа
             Column {
                 Text("Регистрация", fontSize = 20.sp, fontWeight = FontWeight.Bold)
                 Text("Помощь", fontSize = 16.sp)
@@ -71,7 +68,6 @@ fun MainScreen(onRegisterClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Поля для ввода
         var textFieldValue1 by remember { mutableStateOf("") }
         var textFieldValue2 by remember { mutableStateOf("") }
         var textFieldValue3 by remember { mutableStateOf("") }
@@ -113,7 +109,6 @@ fun MainScreen(onRegisterClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Чекбокс с текстом о согласии
         var checkedState by remember { mutableStateOf(false) }
         Row(verticalAlignment = Alignment.CenterVertically) {
             Checkbox(
@@ -125,20 +120,18 @@ fun MainScreen(onRegisterClick: () -> Unit) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Кнопка "Зарегистрироваться"
         Button(
             onClick = {
                 if (checkedState) {
-                    onRegisterClick() // Переход на экран подтверждения
+                    onRegisterClick()
                 } else {
-                    // Здесь можно показать сообщение об ошибке, если необходимо
                 }
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
                 .padding(8.dp),
-            shape = RoundedCornerShape(8.dp), // Скругленные края
+            shape = RoundedCornerShape(8.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFF7FC35))
         ) {
             Text("Зарегистрироваться", color = Color.Black)
